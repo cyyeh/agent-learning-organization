@@ -71,15 +71,30 @@
       background:rgba(121,168,255,.11);color:var(--accent);font-weight:800;
     }
 
-    .loop{
-      display:grid; grid-template-columns:repeat(8,1fr); gap:8px; align-items:center;
+    .cycle{
+      display:grid;
+      grid-template-columns:repeat(7, minmax(0,1fr));
+      grid-template-areas:
+        "s1 e12 s2 e23 s3 e34 s4"
+        "eu .   .  .   .  .   ed"
+        "s8 e87 s7 e76 s6 e65 s5";
+      gap:8px 10px;
+      align-items:center;
       margin-top:10px;
     }
+    .cycle .s1{grid-area:s1} .cycle .s2{grid-area:s2} .cycle .s3{grid-area:s3} .cycle .s4{grid-area:s4}
+    .cycle .s5{grid-area:s5} .cycle .s6{grid-area:s6} .cycle .s7{grid-area:s7} .cycle .s8{grid-area:s8}
+    .cycle .e12{grid-area:e12} .cycle .e23{grid-area:e23} .cycle .e34{grid-area:e34}
+    .cycle .e65{grid-area:e65} .cycle .e76{grid-area:e76} .cycle .e87{grid-area:e87}
+    .cycle .eu{grid-area:eu} .cycle .ed{grid-area:ed}
     .step{
       padding:14px 10px; border-radius:12px; border:1px solid var(--line);
       background:var(--panel); text-align:center; font-size:14px; font-weight:700;
     }
-    .arrow{text-align:center;color:var(--accent-2);font-weight:900}
+    .arrow{
+      text-align:center;color:var(--accent-2);font-weight:900;line-height:1;
+      display:flex;align-items:center;justify-content:center;min-height:22px;
+    }
 
     .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .list{margin:0;padding-left:20px}
@@ -115,8 +130,16 @@
     }
     @media(max-width:860px){
       .grid{grid-template-columns:1fr 1fr}
-      .loop{grid-template-columns:1fr}
-      .arrow{transform:rotate(90deg)}
+      .cycle{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "s1" "e12" "s2" "e23" "s3" "e34" "s4"
+          "ed"
+          "s5" "e65" "s6" "e76" "s7" "e87" "s8"
+          "eu";
+      }
+      .arrow-right{transform:rotate(90deg)}
+      .arrow-left{transform:rotate(-90deg)}
       .two,.artifact{grid-template-columns:1fr}
     }
     @media(max-width:520px){
@@ -204,17 +227,23 @@
 
     <section>
       <h2>學習循環</h2>
-      <div class="loop">
-        <div class="step">真實工作</div><div class="arrow">→</div>
-        <div class="step">發現未知</div><div class="arrow">→</div>
-        <div class="step">提出假設</div><div class="arrow">→</div>
-        <div class="step">最小實驗</div>
-      </div>
-      <div class="loop" style="margin-top:8px">
-        <div class="step">沉澱規則</div><div class="arrow">←</div>
-        <div class="step">團隊討論</div><div class="arrow">←</div>
-        <div class="step">取得證據</div><div class="arrow">←</div>
-        <div class="step">看結果</div>
+      <div class="cycle" role="img" aria-label="學習循環：真實工作、發現未知、提出假設、最小實驗、看結果、取得證據、團隊討論、沉澱規則，再回到真實工作">
+        <div class="step s1">真實工作</div>
+        <div class="arrow arrow-right e12" aria-hidden="true">→</div>
+        <div class="step s2">發現未知</div>
+        <div class="arrow arrow-right e23" aria-hidden="true">→</div>
+        <div class="step s3">提出假設</div>
+        <div class="arrow arrow-right e34" aria-hidden="true">→</div>
+        <div class="step s4">最小實驗</div>
+        <div class="arrow ed" aria-hidden="true">↓</div>
+        <div class="step s5">看結果</div>
+        <div class="arrow arrow-left e65" aria-hidden="true">←</div>
+        <div class="step s6">取得證據</div>
+        <div class="arrow arrow-left e76" aria-hidden="true">←</div>
+        <div class="step s7">團隊討論</div>
+        <div class="arrow arrow-left e87" aria-hidden="true">←</div>
+        <div class="step s8">沉澱規則</div>
+        <div class="arrow eu" aria-hidden="true">↑</div>
       </div>
     </section>
 
