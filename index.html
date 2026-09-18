@@ -4,6 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>打造 AI Agent 學習型工程團隊</title>
+  <link rel="alternate" hreflang="zh-Hant" href="https://cyyeh.github.io/agent-learning-organization/" />
+  <link rel="alternate" hreflang="en" href="https://cyyeh.github.io/agent-learning-organization/?lang=en" />
+  <script>
+    (function () {
+      var lang = null;
+      try {
+        lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('alo-lang');
+      } catch (e) {}
+      if (lang && String(lang).toLowerCase().indexOf('en') === 0) {
+        document.documentElement.lang = 'en';
+        document.documentElement.classList.add('i18n-pending');
+      }
+    })();
+  </script>
   <style>
     :root{
       --bg:#0b1020;
@@ -18,6 +32,7 @@
       --max:1120px;
     }
     *{box-sizing:border-box}
+    html.i18n-pending body{visibility:hidden}
     body{
       margin:0;
       font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -31,11 +46,27 @@
     }
     .wrap{max-width:var(--max); margin:auto; padding:56px 24px 72px}
     .hero{padding:28px 0 42px}
+    .topbar{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap;
+    }
     .eyebrow{
       display:inline-flex; gap:8px; align-items:center;
       padding:7px 12px; border:1px solid var(--line); border-radius:999px;
       color:var(--accent-2); font-size:13px; letter-spacing:.04em;
       background:rgba(255,255,255,.025);
+    }
+    .lang-switch{
+      display:inline-flex; border:1px solid var(--line); border-radius:999px;
+      overflow:hidden; background:rgba(255,255,255,.025);
+    }
+    .lang-switch button{
+      appearance:none; border:0; background:transparent; color:var(--muted);
+      font:inherit; font-size:13px; font-weight:700; letter-spacing:.04em;
+      padding:7px 14px; cursor:pointer;
+    }
+    .lang-switch button[aria-pressed="true"]{
+      color:var(--bg); background:var(--accent-2);
     }
     h1{
       font-size:clamp(36px,6vw,68px);
@@ -90,7 +121,9 @@
     .step{
       padding:14px 10px; border-radius:12px; border:1px solid var(--line);
       background:var(--panel); text-align:center; font-size:14px; font-weight:700;
+      line-height:1.25;
     }
+    html[lang="en"] .step{font-size:13px}
     .arrow{
       text-align:center;color:var(--accent-2);font-weight:900;line-height:1;
       display:flex;align-items:center;justify-content:center;min-height:22px;
@@ -151,207 +184,244 @@
 <body>
   <main class="wrap">
     <header class="hero">
-      <div class="eyebrow">AI / Agent Engineering · Learning Organization</div>
-      <h1>把「不知道」快速變成<br>團隊共同能力</h1>
-      <p class="lead">
+      <div class="topbar">
+        <div class="eyebrow">AI / Agent Engineering · Learning Organization</div>
+        <div class="lang-switch" role="group" data-i18n-aria="lang.group" aria-label="語言">
+          <button type="button" data-set-lang="zh-Hant" aria-pressed="true">中文</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+      <h1><span data-i18n="hero.h1a">把「不知道」快速變成</span><br><span data-i18n="hero.h1b">團隊共同能力</span></h1>
+      <p class="lead" data-i18n="hero.lead">
         對 3–4 位工程師的小團隊，不必做大型知識管理。
         重點是建立一個短迴路：從真實工作發現問題，用小實驗驗證，再把結果沉澱成可重用的工程資產。
       </p>
-      <div class="quote">
+      <div class="quote" data-i18n="hero.quote">
         學習型組織 ≠ 大家一直上課；而是團隊能持續把未知轉化成經過驗證的共同知識。
       </div>
     </header>
 
 
     <section>
-      <h2>什麼是「學習型組織」？</h2>
+      <h2 data-i18n="def.h2">什麼是「學習型組織」？</h2>
       <div class="two">
         <div class="card">
-          <h3>核心定義</h3>
-          <p class="muted">
+          <h3 data-i18n="def.h3">核心定義</h3>
+          <p class="muted" data-i18n="def.p">
             學習型組織不是「大家常上課」或「公司有很多分享會」，而是：
           </p>
-          <div class="quote" style="font-size:18px;margin-top:16px">
+          <div class="quote" style="font-size:18px;margin-top:16px" data-i18n="def.quote">
             團隊能持續發現問題、產生新知、分享知識，並真的改變後續的決策與工作方式。
           </div>
         </div>
         <div class="card">
-          <h3>判斷標準</h3>
+          <h3 data-i18n="judge.h3">判斷標準</h3>
           <ul class="list">
-            <li><strong>能暴露未知：</strong>知道自己還不知道什麼</li>
-            <li><strong>能快速驗證：</strong>用實驗與證據取代直覺爭論</li>
-            <li><strong>能跨人傳遞：</strong>知識不只停留在個人</li>
-            <li><strong>能形成改變：</strong>學到的東西會進入流程、程式碼與決策</li>
+            <li><strong data-i18n="judge.1k">能暴露未知：</strong><span data-i18n="judge.1v">知道自己還不知道什麼</span></li>
+            <li><strong data-i18n="judge.2k">能快速驗證：</strong><span data-i18n="judge.2v">用實驗與證據取代直覺爭論</span></li>
+            <li><strong data-i18n="judge.3k">能跨人傳遞：</strong><span data-i18n="judge.3v">知識不只停留在個人</span></li>
+            <li><strong data-i18n="judge.4k">能形成改變：</strong><span data-i18n="judge.4v">學到的東西會進入流程、程式碼與決策</span></li>
           </ul>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>這個 Agent Engineering Lab 與學習型組織的關係</h2>
+      <h2 data-i18n="lab.h2">這個 Agent Engineering Lab 與學習型組織的關係</h2>
       <div class="artifact">
         <div class="card">
-          <h3>1. 真實工作產生問題</h3>
-          <p class="muted">
+          <h3 data-i18n="lab.1h">1. 真實工作產生問題</h3>
+          <p class="muted" data-i18n="lab.1p">
             不從課本選題，而是從產品、agent failure、效能瓶頸與開發流程中找到真正的未知。
           </p>
         </div>
         <div class="card">
-          <h3>2. Lab 把問題變成共同學習</h3>
-          <p class="muted">
+          <h3 data-i18n="lab.2h">2. Lab 把問題變成共同學習</h3>
+          <p class="muted" data-i18n="lab.2p">
             透過 hypothesis、baseline、experiment、trace 與討論，把個人經驗轉成團隊可驗證的知識。
           </p>
         </div>
         <div class="card">
-          <h3>3. 學習回到 Production</h3>
-          <p class="muted">
+          <h3 data-i18n="lab.3h">3. 學習回到 Production</h3>
+          <p class="muted" data-i18n="lab.3p">
             將結論沉澱成 eval、test、pattern、tool、ADR 或 guardrail，真正改變下一次工程實作。
           </p>
         </div>
       </div>
-      <div class="quote" style="font-size:18px">
+      <div class="quote" style="font-size:18px" data-i18n="lab.quote">
         Agent Engineering Lab 是「學習型組織」的實作載體：讓學習不只發生在人的腦中，而是進入團隊流程與工程系統。
       </div>
     </section>
 
     <section>
-      <h2>五個核心能力</h2>
+      <h2 data-i18n="cap.h2">五個核心能力</h2>
       <div class="grid">
-        <div class="card"><div class="num">1</div><h3>Sense</h3><p class="muted">主動發現「我們其實不知道什麼」。</p></div>
-        <div class="card"><div class="num">2</div><h3>Experiment</h3><p class="muted">用小實驗取代憑感覺爭論。</p></div>
-        <div class="card"><div class="num">3</div><h3>Reflect</h3><p class="muted">從成功與失敗的 trace 找出原因。</p></div>
-        <div class="card"><div class="num">4</div><h3>Codify</h3><p class="muted">把經驗變成 eval、pattern、decision。</p></div>
-        <div class="card"><div class="num">5</div><h3>Transfer</h3><p class="muted">讓個人學習真正改變團隊工作方式。</p></div>
+        <div class="card"><div class="num">1</div><h3>Sense</h3><p class="muted" data-i18n="cap.1">主動發現「我們其實不知道什麼」。</p></div>
+        <div class="card"><div class="num">2</div><h3>Experiment</h3><p class="muted" data-i18n="cap.2">用小實驗取代憑感覺爭論。</p></div>
+        <div class="card"><div class="num">3</div><h3>Reflect</h3><p class="muted" data-i18n="cap.3">從成功與失敗的 trace 找出原因。</p></div>
+        <div class="card"><div class="num">4</div><h3>Codify</h3><p class="muted" data-i18n="cap.4">把經驗變成 eval、pattern、decision。</p></div>
+        <div class="card"><div class="num">5</div><h3>Transfer</h3><p class="muted" data-i18n="cap.5">讓個人學習真正改變團隊工作方式。</p></div>
       </div>
     </section>
 
     <section>
-      <h2>學習循環</h2>
-      <div class="cycle" role="img" aria-label="學習循環：真實工作、發現未知、提出假設、最小實驗、看結果、取得證據、團隊討論、沉澱規則，再回到真實工作">
-        <div class="step s1">真實工作</div>
+      <h2 data-i18n="cycle.h2">學習循環</h2>
+      <div class="cycle" role="img" data-i18n-aria="cycle.aria" aria-label="學習循環：真實工作、發現未知、提出假設、最小實驗、看結果、取得證據、團隊討論、沉澱規則，再回到真實工作">
+        <div class="step s1" data-i18n="cycle.s1">真實工作</div>
         <div class="arrow arrow-right e12" aria-hidden="true">→</div>
-        <div class="step s2">發現未知</div>
+        <div class="step s2" data-i18n="cycle.s2">發現未知</div>
         <div class="arrow arrow-right e23" aria-hidden="true">→</div>
-        <div class="step s3">提出假設</div>
+        <div class="step s3" data-i18n="cycle.s3">提出假設</div>
         <div class="arrow arrow-right e34" aria-hidden="true">→</div>
-        <div class="step s4">最小實驗</div>
+        <div class="step s4" data-i18n="cycle.s4">最小實驗</div>
         <div class="arrow ed" aria-hidden="true">↓</div>
-        <div class="step s5">看結果</div>
+        <div class="step s5" data-i18n="cycle.s5">看結果</div>
         <div class="arrow arrow-left e65" aria-hidden="true">←</div>
-        <div class="step s6">取得證據</div>
+        <div class="step s6" data-i18n="cycle.s6">取得證據</div>
         <div class="arrow arrow-left e76" aria-hidden="true">←</div>
-        <div class="step s7">團隊討論</div>
+        <div class="step s7" data-i18n="cycle.s7">團隊討論</div>
         <div class="arrow arrow-left e87" aria-hidden="true">←</div>
-        <div class="step s8">沉澱規則</div>
+        <div class="step s8" data-i18n="cycle.s8">沉澱規則</div>
         <div class="arrow eu" aria-hidden="true">↑</div>
       </div>
     </section>
 
     <section class="two">
       <div class="card">
-        <h2 style="font-size:24px">不要建立「主題池」</h2>
-        <p class="muted">少一點：MCP、Memory、Multi-Agent、RAG……</p>
-        <h3 style="margin-top:18px">改成建立「問題池」</h3>
+        <h2 style="font-size:24px" data-i18n="pool.h2">不要建立「主題池」</h2>
+        <p class="muted" data-i18n="pool.p">少一點：MCP、Memory、Multi-Agent、RAG……</p>
+        <h3 style="margin-top:18px" data-i18n="pool.h3">改成建立「問題池」</h3>
         <ul class="list">
-          <li>Subagent 什麼情況真的比 single-agent 好？</li>
-          <li>Context 多到什麼程度開始降低表現？</li>
-          <li>哪些 failure 是 model，而不是 tool / retrieval / harness？</li>
-          <li>什麼任務根本不值得使用 agent？</li>
+          <li data-i18n="pool.q1">Subagent 什麼情況真的比 single-agent 好？</li>
+          <li data-i18n="pool.q2">Context 多到什麼程度開始降低表現？</li>
+          <li data-i18n="pool.q3">哪些 failure 是 model，而不是 tool / retrieval / harness？</li>
+          <li data-i18n="pool.q4">什麼任務根本不值得使用 agent？</li>
         </ul>
       </div>
       <div class="card">
-        <h2 style="font-size:24px">把「我不知道」變成資產</h2>
-        <p class="muted">
+        <h2 style="font-size:24px" data-i18n="unk.h2">把「我不知道」變成資產</h2>
+        <p class="muted" data-i18n="unk.p">
           鼓勵工程師把 uncertainty 公開化，不要求立即有答案。
         </p>
-        <div class="quote" style="font-size:17px;margin-top:18px">
+        <div class="quote" style="font-size:17px;margin-top:18px" data-i18n="unk.quote">
           「這兩週你遇到最值得團隊搞清楚的一個『我不知道』是什麼？」
         </div>
       </div>
     </section>
 
     <section>
-      <h2>最小制度：小團隊就做這 6 件事</h2>
+      <h2 data-i18n="sys.h2">最小制度：小團隊就做這 6 件事</h2>
       <table class="schedule">
-        <thead><tr><th>機制</th><th>節奏</th><th>目的</th></tr></thead>
+        <thead><tr><th data-i18n="sys.th1">機制</th><th data-i18n="sys.th2">節奏</th><th data-i18n="sys.th3">目的</th></tr></thead>
         <tbody>
-          <tr><td><code>#agent-radar</code></td><td>隨時</td><td>蒐集值得驗證的新資訊與問題</td></tr>
-          <tr><td>Question Backlog</td><td>持續</td><td>管理 Unknown → Hypothesis → Experiment → Decision</td></tr>
-          <tr><td>Agent Engineering Lab</td><td>每兩週 75 分鐘</td><td>一次只回答一個真實工程問題</td></tr>
-          <tr><td>Failure → Eval</td><td>工作中持續</td><td>把 bug / failure 轉成 regression case</td></tr>
-          <tr><td>Owner + Shadow</td><td>每季輪替</td><td>避免知識只存在單一工程師身上</td></tr>
-          <tr><td>Learning Review</td><td>每季一次</td><td>檢查哪些新知真的改變了 production</td></tr>
+          <tr><td><code>#agent-radar</code></td><td data-i18n="sys.r1c2">隨時</td><td data-i18n="sys.r1c3">蒐集值得驗證的新資訊與問題</td></tr>
+          <tr><td>Question Backlog</td><td data-i18n="sys.r2c2">持續</td><td data-i18n="sys.r2c3">管理 Unknown → Hypothesis → Experiment → Decision</td></tr>
+          <tr><td>Agent Engineering Lab</td><td data-i18n="sys.r3c2">每兩週 75 分鐘</td><td data-i18n="sys.r3c3">一次只回答一個真實工程問題</td></tr>
+          <tr><td>Failure → Eval</td><td data-i18n="sys.r4c2">工作中持續</td><td data-i18n="sys.r4c3">把 bug / failure 轉成 regression case</td></tr>
+          <tr><td>Owner + Shadow</td><td data-i18n="sys.r5c2">每季輪替</td><td data-i18n="sys.r5c3">避免知識只存在單一工程師身上</td></tr>
+          <tr><td>Learning Review</td><td data-i18n="sys.r6c2">每季一次</td><td data-i18n="sys.r6c3">檢查哪些新知真的改變了 production</td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Agent Lab 每次只做一件事：回答一個問題</h2>
+      <h2 data-i18n="meet.h2">Agent Lab 每次只做一件事：回答一個問題</h2>
       <div class="two">
         <div class="card">
-          <h3>會議前</h3>
+          <h3 data-i18n="meet.before">會議前</h3>
           <ul class="list">
-            <li>定義問題與 hypothesis</li>
-            <li>準備 baseline</li>
-            <li>帶一個成功 trace + 一個失敗 trace</li>
+            <li data-i18n="meet.b1">定義問題與 hypothesis</li>
+            <li data-i18n="meet.b2">準備 baseline</li>
+            <li data-i18n="meet.b3">帶一個成功 trace + 一個失敗 trace</li>
           </ul>
         </div>
         <div class="card">
-          <h3>會議中</h3>
+          <h3 data-i18n="meet.during">會議中</h3>
           <ul class="list">
-            <li>拆解 failure</li>
-            <li>做一個小型 ablation</li>
-            <li>形成 Adopt / Experiment / Reject / Revisit 決策</li>
+            <li data-i18n="meet.d1">拆解 failure</li>
+            <li data-i18n="meet.d2">做一個小型 ablation</li>
+            <li data-i18n="meet.d3">形成 Adopt / Experiment / Reject / Revisit 決策</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>知識要一路壓縮成「可執行資產」</h2>
+      <h2 data-i18n="know.h2">知識要一路壓縮成「可執行資產」</h2>
       <div class="artifact">
-        <div class="card"><h3>資訊</h3><p class="muted">文章、paper、GitHub、AI summary</p></div>
-        <div class="card"><h3>團隊知識</h3><p class="muted">Insight、Pattern、Decision、Failure Taxonomy</p></div>
-        <div class="card"><h3>Executable Knowledge</h3><p class="muted">Eval、Test、Reusable Tool、CI Guardrail、Reference Implementation</p></div>
+        <div class="card"><h3 data-i18n="know.1h">資訊</h3><p class="muted" data-i18n="know.1p">文章、paper、GitHub、AI summary</p></div>
+        <div class="card"><h3 data-i18n="know.2h">團隊知識</h3><p class="muted" data-i18n="know.2p">Insight、Pattern、Decision、Failure Taxonomy</p></div>
+        <div class="card"><h3 data-i18n="know.3h">Executable Knowledge</h3><p class="muted" data-i18n="know.3p">Eval、Test、Reusable Tool、CI Guardrail、Reference Implementation</p></div>
       </div>
-      <p class="muted" style="margin-top:14px">
+      <p class="muted" style="margin-top:14px" data-i18n="know.note">
         最理想的分享產物不是 PPT，而是下一位工程師能直接重用或系統能自動執行的東西。
       </p>
     </section>
 
     <section class="two">
       <div class="card">
-        <h2 style="font-size:24px">Leader 的角色</h2>
+        <h2 style="font-size:24px" data-i18n="leader.h2">Leader 的角色</h2>
         <ul class="list">
-          <li>不是成為「最懂 AI 的人」</li>
-          <li>提出好問題</li>
-          <li>要求證據與 baseline</li>
-          <li>鼓勵反例與失敗案例</li>
-          <li>確保學習被沉澱與擴散</li>
+          <li data-i18n="leader.1">不是成為「最懂 AI 的人」</li>
+          <li data-i18n="leader.2">提出好問題</li>
+          <li data-i18n="leader.3">要求證據與 baseline</li>
+          <li data-i18n="leader.4">鼓勵反例與失敗案例</li>
+          <li data-i18n="leader.5">確保學習被沉澱與擴散</li>
         </ul>
       </div>
       <div class="card">
-        <h2 style="font-size:24px">季度 Learning Review</h2>
+        <h2 style="font-size:24px" data-i18n="review.h2">季度 Learning Review</h2>
         <ul class="list">
-          <li>三個月前不知道、現在知道什麼？</li>
-          <li>哪些 assumption 被推翻？</li>
-          <li>哪些實驗真的改變 production？</li>
-          <li>有哪些知識仍只存在個人腦中？</li>
+          <li data-i18n="review.1">三個月前不知道、現在知道什麼？</li>
+          <li data-i18n="review.2">哪些 assumption 被推翻？</li>
+          <li data-i18n="review.3">哪些實驗真的改變 production？</li>
+          <li data-i18n="review.4">有哪些知識仍只存在個人腦中？</li>
         </ul>
       </div>
     </section>
 
     <section>
       <div class="metric">
-        <div class="muted">最終成功指標</div>
+        <div class="muted" data-i18n="metric.kicker">最終成功指標</div>
         <div class="big">
-          當團隊遇到一個沒有人知道答案的新 AI / Agent 工程問題時，<br>
-          是否能自己快速把它變成一個可靠、可重現、可共享的答案？
+          <span data-i18n="metric.a">當團隊遇到一個沒有人知道答案的新 AI / Agent 工程問題時，</span><br>
+          <span data-i18n="metric.b">是否能自己快速把它變成一個可靠、可重現、可共享的答案？</span>
         </div>
       </div>
     </section>
 
     <div class="footer">Agent Engineering Lab · Minimal Learning Organization Playbook</div>
   </main>
+  <script src="i18n.js"></script>
+  <script>
+    (function () {
+      try {
+        var KEY = 'alo-lang';
+        var api = window.ALO_I18N;
+        if (!api) return;
+        function current() {
+          var stored = null;
+          try { stored = localStorage.getItem(KEY); } catch (e) {}
+          return api.readLang({ search: location.search, stored: stored });
+        }
+        function setLang(lang) {
+          var resolved = api.applyLang(document, lang);
+          try { localStorage.setItem(KEY, resolved); } catch (e) {}
+          var url = new URL(location.href);
+          if (resolved === 'en') url.searchParams.set('lang', 'en');
+          else url.searchParams.delete('lang');
+          history.replaceState(null, '', url.pathname + url.search + url.hash);
+        }
+        setLang(current());
+        document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            setLang(btn.getAttribute('data-set-lang'));
+          });
+        });
+      } finally {
+        document.documentElement.classList.remove('i18n-pending');
+      }
+    })();
+  </script>
 </body>
 </html>
